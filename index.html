@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <!-- Meta data -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Title -->
+    <title>Swipe to Send - MakerFaire SG 2017</title>
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="node_modules/jquery-mobile/dist/jquery.mobile.min.css">
+    <link rel="stylesheet" href="public/css/global.css">
+  </head>
+
+  <body>
+    <div id="container">
+      <img id="testImage" name="pic01" src="public/images/pic01.png" />
+    </div>
+
+    <script src="node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="node_modules/jquery-mobile/dist/jquery.mobile.js"></script>
+    <script src="node_modules/jquerymobile-swipeupdown/lib/jquerymobile-swipeupdown.js"></script>
+    <script src="public/js/utils.js"></script>
+    <script>
+      $(function() {
+          $('#testImage').on('swipeup', function (event) {
+              var imageName = $(this).attr('name');
+
+              $(this).animate(
+                  {
+                      marginTop: "-1000px",
+                      opacity: 0
+                  },
+                  500,
+                  function () { // animation complete
+                      utils.sendImageName(imageName, function (isSuccess, statusCode, responseData) {
+                          alert('Image "' + imageName + '" swiped!');
+                      });
+                  }
+              );
+          });
+      });
+    </script>
+  </body>
+</html>
