@@ -2,6 +2,7 @@
 
 ## Requirements
 - PHP >= 7.0
+- [Node.js](https://nodejs.org/) >= 4.2.6
 - [Composer](https://getcomposer.org/)
 - [Yarn](https://yarnpkg.com/)
 
