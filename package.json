@@ -6,6 +6,7 @@
   "dependencies": {
     "jquery": "^1.8.3",
     "jquery-mobile": "^1.4.1",
-    "jquerymobile-swipeupdown": "https://github.com/zionsg/jquerymobile-swipeupdown"
+    "jquerymobile-swipeupdown": "https://github.com/zionsg/jquerymobile-swipeupdown",
+    "socket.io": "^2.0.3"
   }
 }
