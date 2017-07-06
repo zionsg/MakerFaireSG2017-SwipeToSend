@@ -6,7 +6,7 @@ var utils = (function () {
     // Self reference - all public vars/methods will be stored in here and returned as public interface
     var self = {};
 
-    var endpointUrl = 'app/';
+    var endpointUrl = 'http://wall.mymakermall.com:3000';
 
     /**
      * Send image name to endpoint
@@ -18,11 +18,12 @@ var utils = (function () {
     self.sendImageName = function (imageName, responseCallback) {
         $.ajax({
             type: 'POST',
+            contentType: 'application/json; charset=utf-8',
             dataType: 'json',
             url: endpointUrl,
-            data: {
-                image_name: imageName
-            }
+            data: JSON.stringify({
+                vid: imageName
+            })
         }).done(function (data, textStatus, jqXHR) {
             var isSuccess = true,
                 statusCode = jqXHR.status,

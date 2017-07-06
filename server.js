@@ -5,6 +5,10 @@ var querystring = require('querystring');
 var app = http.createServer(function (req, res) {
     var method = req.method;
     var sendResponse = function (jsonObject) {
+        res.setHeader('Access-Control-Allow-Origin', '*');
+        res.setHeader('Access-Control-Allow-Methods', 'GET, POST');
+        res.setHeader('Access-Control-Allow-Headers', 'content-type');
+
         res.writeHead(200, { "Content-Type": "application/json" });
         res.write(JSON.stringify(jsonObject));
         res.end();
@@ -13,9 +17,10 @@ var app = http.createServer(function (req, res) {
     if ('GET' === method) {
         var urlParts = url.parse(req.url, true);
         var query = urlParts.query;
+        var vid = query['vid'] || 0;
 
         console.log(urlParts.search ? query : urlParts.href);
-        io.sockets.emit('vid', query); // client listening for "vid" param
+        io.sockets.emit('vid', vid); // client listening for "vid" param
         sendResponse(query);
     } else if ('POST' === method) {
         var body = '';
@@ -28,13 +33,14 @@ var app = http.createServer(function (req, res) {
         // When request is ended, emit to socket client
         req.on('end', function () {
             var post = JSON.parse(body);
+            var videoId = post.vid;
 
             console.log(post);
-            io.sockets.emit('vid', post.data); // client listening for "vid" param
+            io.sockets.emit('vid', videoId); // client listening for "vid" param
             sendResponse(post);
         });
     } else {
-        sendResponse(post);
+        sendResponse({});
     }
 });
 
