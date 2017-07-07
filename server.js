@@ -1,3 +1,8 @@
+// Include config file
+var fs = require('fs');
+eval(fs.readFileSync('./public/js/config.js') + '');
+var port = config.port || 3000;
+
 var http = require('http');
 var url = require('url');
 var querystring = require('querystring');
@@ -46,7 +51,6 @@ var app = http.createServer(function (req, res) {
 
 // Socket.io server listens to our app
 var io = require('socket.io').listen(app);
-var port = 3000;
 
 // Emit welcome message on connection
 io.sockets.on('connection', function (socket) {
