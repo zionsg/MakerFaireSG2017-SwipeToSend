@@ -1,1 +1,42 @@
-#container { margin: 100px; }
+/* HTML tags */
+html,
+body {
+  width: 100%;
+}
+
+table { margin: 0 auto; }
+td {
+  padding: 10px;
+  text-align: center;
+  vertical-align: top;
+  width: 50%;
+}
+
+/* DOM Elements */
+#swipe-container { display: hidden; }
+
+/* Classes */
+.ui-page {
+  background: url(../images/background.png) no-repeat center top transparent !important;
+  background-size: cover;
+  margin: 0 auto;
+  max-width: 640px; /* width of background image */
+}
+
+.container {
+  margin: 0 auto;
+  max-width: 100%;
+  padding: 10px;
+  text-align: center;
+}
+
+.title-image {
+  max-height: 240px;
+  max-width: 600px;
+  width: 100%;
+}
+
+.animation {
+  max-width: 200px;
+  width: 100%;
+}

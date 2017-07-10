@@ -16,19 +16,56 @@
   </head>
 
   <body>
-    <div id="container">
+    <div id="play-screen" class="container">
+      <img class="title-image" src="public/images/title-play.png" />
+
       <!-- Names of pics correspond to video ids 1-6 for socket client -->
-      <img id="testImage" name="1" src="public/images/pic01.png" />
+      <table>
+        <tr>
+          <td><img class="animation" src="public/images/planes.png" data-vid="1" /></td>
+          <td><img class="animation" src="public/images/fireworks.png" data-vid="2" /></td>
+        </tr>
+
+        <tr>
+          <td><img class="animation" src="public/images/parachute.png" data-vid="3" /></td>
+          <td><img class="animation" src="public/images/helicopter.png" data-vid="4" /></td>
+        </tr>
+
+        <tr>
+          <td><img class="animation" src="public/images/lightshow.png" data-vid="5" /></td>
+          <td><img class="animation" src="public/images/stars.png" data-vid="6" /></td>
+        </tr>
+
+      </table>
+    </div>
+
+    <div id="swipe-screen" class="container">
+      <img class="title-image" src="public/images/title-swipe.png" /><br>
+      <img class="" src="public/images/arrow.png" /><br>
+
+      <img id="selected-animation" src="" data-vid="" /><br>
+
+      <img id="back-btn" src="public/images/back.png" />
     </div>
 
     <script src="node_modules/jquery/dist/jquery.min.js"></script>
     <script src="node_modules/jquery-mobile/dist/jquery.mobile.js"></script>
     <script src="node_modules/jquerymobile-swipeupdown/lib/jquerymobile-swipeupdown.js"></script>
+    <script src="public/js/config.js"></script>
     <script src="public/js/utils.js"></script>
     <script>
       $(function () {
-          $('#testImage').on('swipeup', function (event) {
-              var imageName = $(this).attr('name');
+          $('.animation').on('click', function (event) {
+              var imgSrc = $(this).attr('src');
+              var videoId = $(this).attr('data-vid');
+
+              $('#selected-animation').attr('src', imgSrc).attr('data-vid', videoId);
+              $('#play-screen').hide();
+              $('#swipe-screen').show();
+          });
+
+          $('#selected-animation').on('swipeup', function (event) {
+              var videoId = $(this).attr('data-vid');
 
               $(this).animate(
                   {
@@ -37,11 +74,17 @@
                   },
                   500,
                   function () { // animation complete
-                      utils.sendImageName(imageName, function (isSuccess, statusCode, responseData) {
-                          alert('Image "' + imageName + '" swiped!');
+                      utils.sendVideoId(config, videoId, function (isSuccess, statusCode, responseData) {
+                          alert('Video ID "' + videoId + '" swiped!');
                       });
                   }
               );
+          });
+
+          $('#back-btn').on('click', function (event) {
+              $('#selected-animation').attr('src', '').attr('data-vid', '');
+              $('#swipe-screen').hide();
+              $('#play-screen').show();
           });
       });
     </script>
