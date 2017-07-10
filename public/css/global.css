@@ -14,6 +14,12 @@ td {
 
 /* DOM Elements */
 #swipe-screen { display: none; }
+
+#selected-animation {
+  max-width: 80%;
+  width: 100%;
+}
+
 #back-btn {
   max-width: 75%;
   width: 100%;
