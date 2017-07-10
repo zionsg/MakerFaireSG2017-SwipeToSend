@@ -7,21 +7,21 @@ var utils = (function () {
     var self = {};
 
     /**
-     * Send image name to endpoint
+     * Send video id to endpoint
      *
      * @param  object config
      * @param  string imageName
      * @param  callable responseCallback Takes in (isSuccess, statusCode, responseData) and returns void
      * @return void
      */
-    self.sendImageName = function (config, imageName, responseCallback) {
+    self.sendVideoId = function (config, videoId, responseCallback) {
         $.ajax({
             type: 'POST',
             contentType: 'application/json; charset=utf-8',
             dataType: 'json',
             url: config.endpointUrl,
             data: JSON.stringify({
-                vid: imageName
+                vid: videoId
             })
         }).done(function (data, textStatus, jqXHR) {
             var isSuccess = true,
