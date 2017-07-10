@@ -59,7 +59,10 @@
               var imgSrc = $(this).attr('src');
               var videoId = $(this).attr('data-vid');
 
-              $('#selected-animation').attr('src', imgSrc).attr('data-vid', videoId);
+              $('#selected-animation').attr('src', imgSrc).attr('data-vid', videoId).css({
+                  marginTop: 0,
+                  opacity: 1
+              });
               $('#play-screen').hide();
               $('#swipe-screen').show();
           });
