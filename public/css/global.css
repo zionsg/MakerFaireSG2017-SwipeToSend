@@ -13,7 +13,11 @@ td {
 }
 
 /* DOM Elements */
-#swipe-container { display: hidden; }
+#swipe-screen { display: none; }
+#back-btn {
+  max-width: 75%;
+  width: 100%;
+}
 
 /* Classes */
 .ui-page {
