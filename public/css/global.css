@@ -15,22 +15,15 @@ td {
 /* DOM Elements */
 #swipe-screen { display: none; }
 
-#selected-animation {
-  max-width: 80%;
-  width: 100%;
-}
+#selected-animation { max-width: 80%; }
 
-#back-btn {
-  max-width: 75%;
-  width: 100%;
-}
+#back-btn { max-width: 75%; }
 
 /* Classes */
 .ui-page {
-  background: url(../images/background.png) no-repeat center top transparent !important;
+  background: url(../images/background.jpg) no-repeat center center transparent !important;
   background-size: cover;
   margin: 0 auto;
-  max-width: 640px; /* width of background image */
 }
 
 .container {
