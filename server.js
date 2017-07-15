@@ -51,7 +51,7 @@ var app = http.createServer(function (req, res) {
         // When request is ended, emit to socket client
         req.on('end', function () {
             var post = JSON.parse(body);
-            var videoId = post.vid; || 0
+            var videoId = post.vid || 0;
             var tweet = post.tweet || '';
 
             console.log(post);
