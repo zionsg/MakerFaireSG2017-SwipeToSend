@@ -29,12 +29,16 @@ var app = http.createServer(function (req, res) {
     if ('GET' === method) {
         var urlParts = url.parse(req.url, true);
         var query = urlParts.query;
-        var vid = query['vid'] || 0;
-        var tweet = query['tweet'] || 0;
+        var videoId = query['vid'] || 0;
+        var tweet = query['tweet'] || '';
 
         console.log(urlParts.search ? query : urlParts.href);
-        io.sockets.emit('vid', vid); // client listening for "vid" param
-        io.sockets.emit('tweet', tweet); // client listening for "tweet" param
+        if (videoId) {
+            io.sockets.emit('vid', videoId); // client listening for "vid" param
+        }
+        if (tweet) {
+            io.sockets.emit('tweet', tweet); // client listening for "tweet" param
+        }
         sendResponse(query);
     } else if ('POST' === method) {
         var body = '';
@@ -47,12 +51,16 @@ var app = http.createServer(function (req, res) {
         // When request is ended, emit to socket client
         req.on('end', function () {
             var post = JSON.parse(body);
-            var videoId = post.vid;
-            var tweet = post.tweet;
+            var videoId = post.vid; || 0
+            var tweet = post.tweet || '';
 
             console.log(post);
-            io.sockets.emit('vid', videoId); // client listening for "vid" param
-            io.sockets.emit('tweet', tweet); // client listening for "tweet" param
+            if (videoId) {
+                io.sockets.emit('vid', videoId); // client listening for "vid" param
+            }
+            if (tweet) {
+                io.sockets.emit('tweet', tweet); // client listening for "tweet" param
+            }
             sendResponse(post);
         });
     } else {
