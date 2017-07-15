@@ -1,3 +1,10 @@
+/**
+ * Socket server for MakerFaireSG 2017
+ *
+ * Listens for `vid` param from SwipeToSend app and `tweet` param from AnimatedTweets app
+ * and sends them to the socket client.
+ */
+
 // Include config file
 var fs = require('fs');
 eval(fs.readFileSync('./public/js/config.js') + '');
@@ -23,9 +30,11 @@ var app = http.createServer(function (req, res) {
         var urlParts = url.parse(req.url, true);
         var query = urlParts.query;
         var vid = query['vid'] || 0;
+        var tweet = query['tweet'] || 0;
 
         console.log(urlParts.search ? query : urlParts.href);
         io.sockets.emit('vid', vid); // client listening for "vid" param
+        io.sockets.emit('tweet', tweet); // client listening for "tweet" param
         sendResponse(query);
     } else if ('POST' === method) {
         var body = '';
@@ -39,9 +48,11 @@ var app = http.createServer(function (req, res) {
         req.on('end', function () {
             var post = JSON.parse(body);
             var videoId = post.vid;
+            var tweet = post.tweet;
 
             console.log(post);
             io.sockets.emit('vid', videoId); // client listening for "vid" param
+            io.sockets.emit('tweet', tweet); // client listening for "tweet" param
             sendResponse(post);
         });
     } else {
