@@ -1,5 +1,7 @@
 # MakerFaire SG 2017 - Swipe To Send
 
+This web app is hosted on the Internet where users can open it via the browser on their mobile devices. It provides a set of icons which users can tap and swipe to send it to the Interactive Wall.
+
 ## Requirements
 - [Node.js](https://nodejs.org/) >= 4.2.6
 - [Yarn](https://yarnpkg.com/)
